@@ -1,7 +1,7 @@
 # JellyStack
 [Portainer:](https://github.com/portainer/portainer) Docker container management.
 
-[Docker:](https://github.com/docker) + [Compose](https://github.com/docker/compose) Container software hosting all the subsequently listed services.
+[Docker:](https://github.com/docker) + [Compose:](https://github.com/docker/compose) Container software hosting all the subsequently listed services.
 
 [Jellyfin:](https://github.com/jellyfin/jellyfin) Media server for streaming movies and TV shows. 
 
@@ -45,5 +45,6 @@ Redirecterr
 Monitarr
 posterr
 [Kapowarr:](https://github.com/Casvt/Kapowarr) Used to grab comics.
+
 Watcharr
 Decluttarr: Used to maintain/clean your *arr app queues and downloads.
