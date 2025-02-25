@@ -37,14 +37,22 @@
 
 [Unpackerr:](https://github.com/Unpackerr/unpackerr)  Unpacks zip files 
 
-Maybe: 
+
+# Maybe:
 Trailarr
+
 SonaShow
+
 RadaRec
+
 Redirecterr
+
 Monitarr
+
 posterr
+
 [Kapowarr:](https://github.com/Casvt/Kapowarr) Used to grab comics.
 
 Watcharr
+
 Decluttarr: Used to maintain/clean your *arr app queues and downloads.
