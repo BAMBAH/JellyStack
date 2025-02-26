@@ -26,7 +26,7 @@
 
 ## Network + Security
 
-[SWAG](https://github.com/linuxserver/docker-swag) with [Dashboard](https://github.com/linuxserver/docker-mods/tree/swag-dashboard) and [Auto Proxy](https://github.com/linuxserver/docker-mods/tree/swag-auto-proxy) mods + [Authelia](https://github.com/authelia/authelia)
+[SWAG](https://github.com/linuxserver/docker-swag) + [Authelia](https://github.com/authelia/authelia)
 
 [Gluetun:](https://github.com/qdm12/gluetun) VPN container with WireGuard support for secure browsing.
 
