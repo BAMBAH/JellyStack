@@ -1,68 +1,76 @@
-# Portainer version
-version: "3.0"
+#
 
-# Network setup
 networks:
-  proxy:
-    name: proxy
+  net:
+    driver: 'bridge'
 
-# Gluetun VPN
+
+
 services:
-  gluetun:
-    image: qmcgaw/gluetun:latest
-    container_name: gluetun
-    restart: always
-    cap_add:
-      - NET_ADMIN
-    devices:
-      - /dev/net/tun:/dev/net/tun
-     ports:
-      - 8080:8080/tcp # qBit WebUi
-      - 8694:8694/tcp # qBit Torrenting
-      - 9696:9696/tcp # prowlarr
+  #gluetun:
+    #image: qmcgaw/gluetun:latest
+    #container_name: gluetun
+    #restart: always
+    #cap_add:
+      #- NET_ADMIN
+    #devices:
+      #- /dev/net/tun:/dev/net/tun
+     #ports:
+      #- 8080:8080/tcp # qBit WebUi
+      #- 8694:8694/tcp # qBit Torrenting
+      #- 9696:9696/tcp # prowlarr
 
-
-
-
-      swag:
-    image: lscr.io/linuxserver/swag:latest
-    container_name: swag
-    cap_add:
-      - NET_ADMIN
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
     restart: unless-stopped
+# Hardware transcoding
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
     volumes:
-      - ${FOLDER_FOR_DATA:?err}/swag:/config
-    ports:
-      - 80:80:tcp
-      - 443:443:tcp
-    environment:
+      - /home/jellyfin/data:/config
+      - /home/jellyfin/media:/media
+    networks:  # Attach the service to the custom network
+      - net
+
+
+      #swag:
+    #image: lscr.io/linuxserver/swag:latest
+    #container_name: swag
+    #cap_add:
+      #- NET_ADMIN
+    #restart: unless-stopped
+    #volumes:
+      #- ${FOLDER_FOR_DATA:?err}/swag:/config
+    #ports:
+      #- 80:80:tcp
+      #- 443:443:tcp
+    #environment:
     
 # NOTE: SWAG MUST NOT connect to the Gluetun VPN container
-    networks:
-      - mediastack
+    #networks:
+      #- mediastack
 
-authelia:
-    image: ghcr.io/authelia/authelia:latest
-    container_name: authelia
+#authelia:
+    #image: ghcr.io/authelia/authelia:latest
+    #container_name: authelia
 
-lscr.io/linuxserver/bazarr:latest
+#lscr.io/linuxserver/bazarr:latest
 
-lscr.io/linuxserver/jellyfin:latest
+#lscr.io/linuxserver/sonarr:latest
 
-lscr.io/linuxserver/sonarr:latest
+#lscr.io/linuxserver/radarr:latest
 
-lscr.io/linuxserver/radarr:latest
+#lscr.io/linuxserver/prowlarr:latest
 
-lscr.io/linuxserver/prowlarr:latest
+#lscr.io/linuxserver/qbittorrent:latest
 
-lscr.io/linuxserver/qbittorrent:latest
+#ghcr.io/ajnart/homarr:latest
 
-ghcr.io/ajnart/homarr:latest
-
-ghcr.io/haveagitgat/tdarr:latest
+#ghcr.io/haveagitgat/tdarr:latest
 
 
-image: ghcr.io/flaresolverr/flaresolverr:latest
+#image: ghcr.io/flaresolverr/flaresolverr:latest
 
 ## Future
 
