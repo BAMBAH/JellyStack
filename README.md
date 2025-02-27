@@ -30,7 +30,7 @@
 
 [Gluetun:](https://github.com/qdm12/gluetun) VPN container with WireGuard support for secure browsing.
 
-[Flaresolverr:](https://github.com/FlareSolverr/FlareSolverr) Used as a proxy server to bypass Cloudflare and DDoS-GUARD protection.
+[Flaresolverr:](https://github.com/FlareSolverr/FlareSolverr) Used as a proxy server to bypass Cloudflare protection.
 
 ## Misc
 
