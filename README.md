@@ -26,9 +26,9 @@
 
 ## Network + Security
 
-[SWAG](https://github.com/linuxserver/docker-swag) + [Authelia](https://github.com/authelia/authelia)
+[SWAG](https://github.com/linuxserver/docker-swag) + [Authelia:](https://github.com/authelia/authelia) [Nginx webserver + reverse proxy](https://github.com/nginx/nginx) with built-in [Certbot](https://github.com/certbot/certbot) and [Fail2ban](https://github.com/fail2ban/fail2ban) - [Authelia](https://github.com/authelia/authelia) Multi-Factor Authentication intergration
 
-[Gluetun:](https://github.com/qdm12/gluetun) VPN container with WireGuard support for secure browsing.
+[Gluetun:](https://github.com/qdm12/gluetun) VPN container with [WireGuard](https://www.wireguard.com/) support for secure browsing.
 
 [Flaresolverr:](https://github.com/FlareSolverr/FlareSolverr) Used as a proxy server to bypass Cloudflare protection.
 
