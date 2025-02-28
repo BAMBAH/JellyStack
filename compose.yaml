@@ -4,9 +4,8 @@ networks:
   net:
     driver: 'bridge'
 
-
-
 services:
+
   #gluetun:
     #image: qmcgaw/gluetun:latest
     #container_name: gluetun
@@ -33,7 +32,6 @@ services:
     networks:  # Attach the service to the custom network
       - net
 
-
       #swag:
     #image: lscr.io/linuxserver/swag:latest
     #container_name: swag
@@ -41,13 +39,12 @@ services:
       #- NET_ADMIN
     #restart: unless-stopped
     #volumes:
-      #- ${FOLDER_FOR_DATA:?err}/swag:/config
+      #- $/swag:/config
     #ports:
       #- 80:80:tcp
       #- 443:443:tcp
     #environment:
     
-# NOTE: SWAG MUST NOT connect to the Gluetun VPN container
     #networks:
       #- mediastack
 
@@ -55,25 +52,23 @@ services:
     #image: ghcr.io/authelia/authelia:latest
     #container_name: authelia
 
-#lscr.io/linuxserver/bazarr:latest
-
 #lscr.io/linuxserver/sonarr:latest
 
 #lscr.io/linuxserver/radarr:latest
 
 #lscr.io/linuxserver/prowlarr:latest
 
-#lscr.io/linuxserver/qbittorrent:latest
+#lscr.io/linuxserver/bazarr:latest
 
-#ghcr.io/ajnart/homarr:latest
+#lscr.io/linuxserver/qbittorrent:latest
 
 #ghcr.io/haveagitgat/tdarr:latest
 
-
-#image: ghcr.io/flaresolverr/flaresolverr:latest
-
 ## Future
 
+#ghcr.io/ajnart/homarr:latest
+
+#image: ghcr.io/flaresolverr/flaresolverr:latest
 
 ## Maybe
 
