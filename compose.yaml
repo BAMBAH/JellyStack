@@ -6,22 +6,26 @@ networks:
 
 services:
 
-  #swag: Nginx webserver + reverse proxy with built-in Certbot and Fail2ban
+  #swag: # Nginx webserver + reverse proxy with built-in Certbot and Fail2ban
     #image: lscr.io/linuxserver/swag:latest # https://github.com/linuxserver/docker-swag
     #container_name: swag
     #cap_add:
       #- NET_ADMIN
     #restart: unless-stopped
     #volumes:
-      #- $/swag:/config
+      #- /home/docker/swag/config:/config
     #ports:
-      #- 80:80
-      #- 443:443
+      #- 80:80 # HTTP for Nginx 
+      #- 443:443 # HTTPS for Nginx
     #environment:
     
   #authelia: # Authelia Multi-Factor Authentication with SWAG intergration
     #image: ghcr.io/authelia/authelia:latest
-   
+    #container_name: jellyfin
+    #restart: unless-stopped
+    #volumes:
+      #- /home/docker/authelia/config:/config
+
   #gluetun: # VPN client with Mullvad support
     #image: qmcgaw/gluetun:latest
     #container_name: gluetun
@@ -42,8 +46,8 @@ services:
     devices: # Hardware devices, in case hardware transcoding
       - /dev/dri/renderD128:/dev/dri/renderD128
     volumes: # 
-      - /home/jellyfin/data:/config
-      - /home/jellyfin/media:/media
+      - /home/docker/jellyfin/config:/config
+      - /home/docker/jellyfin/media:/media
     networks: # network group 
       - net
       ports: # 
@@ -52,37 +56,48 @@ services:
     
   #sonarr:
     #image: lscr.io/linuxserver/sonarr:latest
+
     
   #radarr:
     #image: lscr.io/linuxserver/radarr:latest # https://github.com/linuxserver/docker-radarr
+
     
   #prowlarr:
     #image: lscr.io/linuxserver/prowlarr:latest # https://github.com/linuxserver/docker-prowlarr
+
     
   #bazarr:
     #image: lscr.io/linuxserver/bazarr:latest # https://github.com/linuxserver/docker-bazarr
+
       
   #qbittorrent:
     #image: lscr.io/linuxserver/qbittorrent:latest # https://github.com/linuxserver/docker-qbittorrent
+
     
   #tdarr:
     #image: ghcr.io/haveagitgat/tdarr:latest
+
     
   #jellyseerr:
     #image: fallenbagel/jellyseerr:latest
+
     
 ##########
 ## Future ##
 ##########
+
     
   #hommar:
     #image: ghcr.io/ajnart/homarr:latest
+
     
   #flaresolverr:
     #image: ghcr.io/flaresolverr/flaresolverr:latest
-      
-  ## Maybe
 
+  ###########   
+  ## Maybe ##
+  ###########
+  
   #lidarr:
     #image: lscr.io/linuxserver/lidarr:latest # https://github.com/linuxserver/docker-lidarr
   
@@ -95,6 +110,4 @@ services:
     
     #image: ghcr.io/flmorg/cleanuperr:latest # https://github.com/flmorg/cleanuperr / #ghcr.io/manimatter/decluttarr:latest # https://github.com/ManiMatter/decluttarr
   
- 
-
-##
+ ##
