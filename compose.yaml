@@ -1,30 +1,41 @@
-##
-
 networks:
   net:
     driver: 'bridge'
-
-services:
-
-  #swag: # Nginx webserver + reverse proxy with built-in Certbot and Fail2ban
-    #image: lscr.io/linuxserver/swag:latest # https://github.com/linuxserver/docker-swag
-    #container_name: swag
-    #cap_add:
-      #- NET_ADMIN
-    #restart: unless-stopped
-    #volumes:
-      #- /home/docker/swag/config:/config
-    #ports:
-      #- 80:80 # HTTP for Nginx 
-      #- 443:443 # HTTPS for Nginx
-    #environment:
     
-  #authelia: # Authelia Multi-Factor Authentication with SWAG intergration
-    #image: ghcr.io/authelia/authelia:latest
-    #container_name: jellyfin
+services:
+## https://www.linuxserver.io/blog/zero-trust-hosting-and-reverse-proxy-via-cloudflare-swag-and-authelia ##
+ #flaresolverr: # Cloudflare Tunnel bypass
+    #image: ghcr.io/flaresolverr/flaresolverr:latest
+    #container_name: flaresolverr
     #restart: unless-stopped
-    #volumes:
-      #- /home/docker/authelia/config:/config
+    #ports: 
+      #- 8191:8191
+    #environment:
+    #networks:
+      #- net
+      
+  swag: # Nginx webserver + reverse proxy with built-in Certbot and Fail2ban
+    image: lscr.io/linuxserver/swag:latest # https://github.com/linuxserver/docker-swag
+    container_name: swag
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+    volumes:
+      - /home/docker/swag/config:/config
+    ports:
+      - 80:80 # HTTP for Nginx 
+      - 443:443 # HTTPS for Nginx
+    environment:
+      -  URL=nginx.selfhosted
+    
+  authelia: # Authelia Multi-Factor Authentication with SWAG intergration
+    image: ghcr.io/authelia/authelia:latest
+    container_name: authelia
+    restart: unless-stopped
+    volumes:
+      - /home/docker/authelia/config:/config
+    networks:
+      - net
 
   #gluetun: # VPN client with Mullvad support
     #image: qmcgaw/gluetun:latest
@@ -34,11 +45,11 @@ services:
       #- NET_ADMIN
     #devices:
       #- /dev/net/tun:/dev/net/tun
-     #ports:
+    #ports:
       #- 8080:8080/tcp # qBit WebUi
       #- 8694:8694/tcp # qBit Torrenting
       #- 9696:9696/tcp # prowlarr
-  
+      
   jellyfin: # Media server for streaming movies and TV shows.
     image: lscr.io/linuxserver/jellyfin:latest # https://github.com/linuxserver/docker-jellyfin
     container_name: jellyfin
@@ -50,49 +61,53 @@ services:
       - /home/docker/jellyfin/media:/media
     networks: # network group 
       - net
-      ports: # 
+    ports: # 
       - 8096:8096 # Jellyfin HTTP
       - 8920:8920 # Jellyfin HTTPS
-    
+
   #sonarr:
     #image: lscr.io/linuxserver/sonarr:latest
-
-    
+    #container_name: sonarr
+    #restart: unless-stopped
+        
   #radarr:
     #image: lscr.io/linuxserver/radarr:latest # https://github.com/linuxserver/docker-radarr
-
-    
+    #container_name: radarr
+    #restart: unless-stopped
+        
   #prowlarr:
     #image: lscr.io/linuxserver/prowlarr:latest # https://github.com/linuxserver/docker-prowlarr
-
+    #container_name: prowlarr
+    #restart: unless-stopped
     
   #bazarr:
     #image: lscr.io/linuxserver/bazarr:latest # https://github.com/linuxserver/docker-bazarr
-
+    #container_name: bazarr
+    #restart: unless-stopped
       
   #qbittorrent:
     #image: lscr.io/linuxserver/qbittorrent:latest # https://github.com/linuxserver/docker-qbittorrent
-
+    #container_name: qbittorrent
+    #restart: unless-stopped
     
   #tdarr:
     #image: ghcr.io/haveagitgat/tdarr:latest
-
+    #container_name: tdarr
+    #restart: unless-stopped
     
   #jellyseerr:
     #image: fallenbagel/jellyseerr:latest
-
+    #container_name: jellyseerr
+    #restart: unless-stopped
     
 ##########
 ## Future ##
 ##########
 
-    
-  #hommar:
+  #hommarr:
     #image: ghcr.io/ajnart/homarr:latest
-
-    
-  #flaresolverr:
-    #image: ghcr.io/flaresolverr/flaresolverr:latest
+    #container_name: hommarr
+    #restart: unless-stopped
 
   ###########   
   ## Maybe ##
@@ -100,14 +115,17 @@ services:
   
   #lidarr:
     #image: lscr.io/linuxserver/lidarr:latest # https://github.com/linuxserver/docker-lidarr
+    #container_name: lidarr
+    #restart: unless-stopped
   
   #readarr
     #image: lscr.io/linuxserver/readarr:latest # https://github.com/linuxserver/docker-readarr
-
+    #container_name: readarr
+    #restart: unless-stopped
     
      #unpackarr:
     #image: ghcr.io/unpackerr/unpackerr:latest # https://github.com/Unpackerr/unpackerr
-    
-    #image: ghcr.io/flmorg/cleanuperr:latest # https://github.com/flmorg/cleanuperr / #ghcr.io/manimatter/decluttarr:latest # https://github.com/ManiMatter/decluttarr
-  
- ##
+      
+    #image: ghcr.io/flmorg/cleanuperr:latest # https://github.com/flmorg/cleanuperr
+    # /
+    #image: ghcr.io/manimatter/decluttarr:latest # https://github.com/ManiMatter/decluttarr
