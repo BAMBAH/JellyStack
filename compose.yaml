@@ -8,9 +8,9 @@ services:
     #image: ghcr.io/flaresolverr/flaresolverr:latest
     #container_name: flaresolverr
     #restart: unless-stopped
+     #environment:
     #ports: 
       #- 8191:8191
-    #environment:
     #networks:
       #- net
       
@@ -22,11 +22,11 @@ services:
     restart: unless-stopped
     volumes:
       - /home/docker/swag/config:/config
+    environment:
+      -  URL=nginx.selfhosted
     ports:
       - 80:80 # HTTP for Nginx 
       - 443:443 # HTTPS for Nginx
-    environment:
-      -  URL=nginx.selfhosted
     
   authelia: # Authelia Multi-Factor Authentication with SWAG intergration
     image: ghcr.io/authelia/authelia:latest
