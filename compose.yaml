@@ -10,7 +10,7 @@ services:
     #restart: unless-stopped
      #environment:
     #ports: 
-      #- 8191:8191
+      #- 8191:8191 # Listening port for FlareSolverr 
     #networks:
       #- net
       
@@ -25,17 +25,17 @@ services:
     environment:
       -  URL=nginx.selfhosted
     ports:
-      - 80:80 # HTTP for Nginx 
-      - 443:443 # HTTPS for Nginx
+      - 80:80 # HTTP port for Nginx 
+      - 443:443 # HTTPS port for Nginx
     
-  authelia: # Authelia Multi-Factor Authentication with SWAG intergration
-    image: ghcr.io/authelia/authelia:latest
-    container_name: authelia
-    restart: unless-stopped
-    volumes:
-      - /home/docker/authelia/config:/config
-    networks:
-      - net
+  # authelia: # Authelia Multi-Factor Authentication with SWAG intergration
+    # image: ghcr.io/authelia/authelia:latest
+    # container_name: authelia
+    # restart: unless-stopped
+    # volumes:
+    #  - /home/docker/authelia/config:/config
+    #networks:
+    #  - net
 
   #gluetun: # VPN client with Mullvad support
     #image: qmcgaw/gluetun:latest
@@ -61,70 +61,70 @@ services:
       - /home/docker/jellyfin/media:/media
     networks: # network group 
       - net
-    ports: # 
+    ports:  
       - 8096:8096 # Jellyfin HTTP
       - 8920:8920 # Jellyfin HTTPS
 
-  #sonarr:
-    #image: lscr.io/linuxserver/sonarr:latest
+  #sonarr: # Show manager
+    #image: lscr.io/linuxserver/sonarr:latest # https://github.com/linuxserver/docker-sonarr
     #container_name: sonarr
     #restart: unless-stopped
         
-  #radarr:
+  #radarr: # Movie manager
     #image: lscr.io/linuxserver/radarr:latest # https://github.com/linuxserver/docker-radarr
     #container_name: radarr
     #restart: unless-stopped
         
-  #prowlarr:
+  #prowlarr: # Sonnar and Radarr manager
     #image: lscr.io/linuxserver/prowlarr:latest # https://github.com/linuxserver/docker-prowlarr
     #container_name: prowlarr
     #restart: unless-stopped
     
-  #bazarr:
+  #bazarr: # Subtitle manager
     #image: lscr.io/linuxserver/bazarr:latest # https://github.com/linuxserver/docker-bazarr
     #container_name: bazarr
     #restart: unless-stopped
       
-  #qbittorrent:
+  #qbittorrent: # Bittorrent client
     #image: lscr.io/linuxserver/qbittorrent:latest # https://github.com/linuxserver/docker-qbittorrent
     #container_name: qbittorrent
     #restart: unless-stopped
     
-  #tdarr:
+  #tdarr: # Automatic transcoding
     #image: ghcr.io/haveagitgat/tdarr:latest
     #container_name: tdarr
     #restart: unless-stopped
     
-  #jellyseerr:
+  #jellyseerr: # Jellyfin request manager
     #image: fallenbagel/jellyseerr:latest
     #container_name: jellyseerr
     #restart: unless-stopped
     
-##########
-## Future ##
-##########
-
-  #hommarr:
+  #hommarr: # Admin Dashboard
     #image: ghcr.io/ajnart/homarr:latest
     #container_name: hommarr
     #restart: unless-stopped
-
+    
   ###########   
   ## Maybe ##
   ###########
+
+# Navidrome # Music streamer
+# https://github.com/navidrome/navidrome
   
-  #lidarr:
+  #lidarr: # Music manager
     #image: lscr.io/linuxserver/lidarr:latest # https://github.com/linuxserver/docker-lidarr
     #container_name: lidarr
     #restart: unless-stopped
-  
-  #readarr
+    
+  #readarr #
     #image: lscr.io/linuxserver/readarr:latest # https://github.com/linuxserver/docker-readarr
     #container_name: readarr
     #restart: unless-stopped
     
-     #unpackarr:
+  #unpackarr:
     #image: ghcr.io/unpackerr/unpackerr:latest # https://github.com/Unpackerr/unpackerr
+
       
     #image: ghcr.io/flmorg/cleanuperr:latest # https://github.com/flmorg/cleanuperr
     # /
