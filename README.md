@@ -2,8 +2,6 @@
 
 ## Docker
 
-[Portainer:](https://github.com/portainer/portainer) Docker container management.
-
 [Docker:](https://github.com/docker) + [Compose:](https://github.com/docker/compose) Container software hosting all the subsequently listed services.
 
 ## Jellyfin + *arr stack
@@ -30,8 +28,6 @@
 
 [Gluetun:](https://github.com/qdm12/gluetun) VPN container with [WireGuard](https://www.wireguard.com/) support for secure browsing.
 
-[Flaresolverr:](https://github.com/FlareSolverr/FlareSolverr) Used as a proxy server to bypass Cloudflare protection.
-
 ## Misc
 
 [Qbittorrent:](https://github.com/qbittorrent/qBittorrent) BitTorrent client with VPN support.
@@ -41,9 +37,13 @@
 
 # Future: 
 
+[Flaresolverr:](https://github.com/FlareSolverr/FlareSolverr) Used as a proxy server to bypass Cloudflare protection.
+
 [Lidarr:](https://github.com/Lidarr/Lidarr) Used to grab music.
 
 # Maybe:
+
+[Portainer:](https://github.com/portainer/portainer) Docker container management.
 
 [Readarr:](https://github.com/Readarr/Readarr) Used to grab books and audiobooks.
 
