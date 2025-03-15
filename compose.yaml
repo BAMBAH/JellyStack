@@ -70,7 +70,7 @@ services:
     container_name: sonarr
     image: lscr.io/linuxserver/sonarr:latest # https://github.com/linuxserver/docker-sonarr
     restart: unless-stopped
-    volume: 
+    volumes: 
       - /home/docker/sonarr/config:/config
     ports:
       - 8989:8989
@@ -80,7 +80,7 @@ services:
     container_name: radarr
     image: lscr.io/linuxserver/radarr:latest # https://github.com/linuxserver/docker-radarr
     restart: unless-stopped
-    volume:
+    volumes:
       - /home/docker/radarr/config:/config
     ports:
       - 7878:7878
