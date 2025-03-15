@@ -8,11 +8,12 @@ services:
     #container_name: flaresolverr
     #image: ghcr.io/flaresolverr/flaresolverr:latest
     #restart: unless-stopped
-     #environment:
+    #environment:
+    #networks:
+     #- net
     #ports: 
       #- 8191:8191 # Listening port for FlareSolverr 
-    #networks:
-      #- net
+    
       
   swag: # Nginx webserver + reverse proxy with built-in Certbot and Fail2ban
     container_name: swag
@@ -65,30 +66,43 @@ services:
       - 8096:8096 # Jellyfin HTTP
       - 8920:8920 # Jellyfin HTTPS
 
-  #sonarr: # Show manager
-    #container_name: sonarr
-    #image: lscr.io/linuxserver/sonarr:latest # https://github.com/linuxserver/docker-sonarr
-    #restart: unless-stopped
+  sonarr: # Show manager
+    container_name: sonarr
+    image: lscr.io/linuxserver/sonarr:latest # https://github.com/linuxserver/docker-sonarr
+    restart: unless-stopped
+    volume: 
+      - /home/docker/sonarr/config:/config
+    ports:
+      - 8989:8989
+    
         
-  #radarr: # Movie manager
-    #container_name: radarr
-    #image: lscr.io/linuxserver/radarr:latest # https://github.com/linuxserver/docker-radarr
-    #restart: unless-stopped
+  radarr: # Movie manager
+    container_name: radarr
+    image: lscr.io/linuxserver/radarr:latest # https://github.com/linuxserver/docker-radarr
+    restart: unless-stopped
+    volume:
+      - /home/docker/radarr/config:/config
+    ports:
+      - 7878:7878
         
-  #prowlarr: # Sonnar and Radarr manager
-    #container_name: prowlarr
-    #image: lscr.io/linuxserver/prowlarr:latest # https://github.com/linuxserver/docker-prowlarr
-    #restart: unless-stopped
+  prowlarr: # Sonnar and Radarr manager
+    container_name: prowlarr
+    image: lscr.io/linuxserver/prowlarr:latest # https://github.com/linuxserver/docker-prowlarr
+    restart: unless-stopped
+    volumes:
+      - /home/docker/prowlarr/config:/config
+    ports: 
+      - 9696:9696
     
   #bazarr: # Subtitle manager
     #container_name: bazarr
     #image: lscr.io/linuxserver/bazarr:latest # https://github.com/linuxserver/docker-bazarr
     #restart: unless-stopped
       
-  #qbittorrent: # Bittorrent client
-    #container_name: qbittorrent
-    #image: lscr.io/linuxserver/qbittorrent:latest # https://github.com/linuxserver/docker-qbittorrent
-    #restart: unless-stopped
+  qbittorrent: # Bittorrent client
+    container_name: qbittorrent
+    image: lscr.io/linuxserver/qbittorrent:latest # https://github.com/linuxserver/docker-qbittorrent
+    restart: unless-stopped
     
   #tdarr: # Automatic transcoding
     #container_name: tdarr
@@ -108,7 +122,7 @@ services:
     #restart: unless-stopped
     
   ###########   
-  ## Maybe ##
+  ### WIP ###
   ###########
 
 # Navidrome # Music streamer
